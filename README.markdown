@@ -16,7 +16,7 @@ You can run any example by changing into the directory for the day and using `bi
 
 Here are some of the sites I'm learning from:
 
-[TutorialsPoint](https://www.tutorialspoint.com/cplusplus/index.htm)
-[cplusplus](https://www.cplusplus.com/)
+* [TutorialsPoint](https://www.tutorialspoint.com/cplusplus/index.htm)
+* [cplusplus](https://www.cplusplus.com/)
 
 Plus a lot of searching on Duck Duck Go.

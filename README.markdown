@@ -6,8 +6,8 @@ I chose to implement my solutions in C++ as I want to learn the language.
 
 ## Compiling
 
-You can compile any example by using `c++ -o bin/fname fname.cpp`.
+You can compile any example by changing into the directory for the day and using `c++ -o bin/filename filename.cpp`.
 
 ## Running
 
-You can run any example by using `bin/fname args`.
+You can run any example by changing into the directory for the day and using `bin/filename [arg]`.

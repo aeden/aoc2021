@@ -6,9 +6,14 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char** argv) {
   string filename;
-  filename = "p1.data.txt";
+  if (argc != 2) {
+    cout << "Usage: " << argv[0] << " datafile" << endl;
+    return 1;
+  } else {
+    filename = argv[1];
+  }
 
   ifstream infile;
   infile.open(filename);

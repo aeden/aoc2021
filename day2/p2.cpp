@@ -27,6 +27,28 @@ const string FORWARD = "forward";
 const string UP = "up";
 const string DOWN = "down";
 
+class Command {
+  public:
+    string label;
+    int value;
+
+    Command(string label, int value) {
+      this->label = label;
+      this->value = value;
+    }
+
+    void execute(int *horizontal_position, int *depth, int *aim) {
+      if (label.compare(FORWARD) == 0) {
+        *horizontal_position += value; 
+        *depth += *aim * value;
+      } else if (label.compare(UP)) {
+        *aim += value;
+      } else if (label.compare(DOWN)) {
+        *aim -= value;
+      }
+    }
+};
+
 int main(int argc, char** argv) {
   string filename;
   if (argc != 2) {
@@ -51,17 +73,9 @@ int main(int argc, char** argv) {
     while (tokenizer >> token) {
       tokens.push_back(token);
     }
-    string command = tokens[0];
-    int value = stoi(tokens[1]);
 
-    if (command.compare(FORWARD) == 0) {
-      horizontal_position += value; 
-      depth += aim * value;
-    } else if (command.compare(UP)) {
-      aim += value;
-    } else if (command.compare(DOWN)) {
-      aim -= value;
-    }
+    Command command(tokens[0], stoi(tokens[1]));
+    command.execute(&horizontal_position, &depth, &aim);
   }
 
   cout << "Horizontal position: " << horizontal_position << endl;

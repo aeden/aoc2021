@@ -12,7 +12,7 @@ You can compile any C++ example by changing into the directory for the day and u
 
 ## Running
 
-You can run any C++ example by changing into the directory for the day and using `bin/filename [arg]`.
+You can run any C++ example by changing into the directory for the day and using `bin/filename args` where args are pairs like `:filename data.txt`..
 
 You can run any Clojure example by changing into the directory for the day and using `clj -X packagename/run` where package name is the name of the source file without the `.clj` extension. For example, in day1 you'd run `clj -X p1/run` to run the first part of the problem from day 1. 
 

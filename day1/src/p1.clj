@@ -17,4 +17,6 @@
 
 (defn run [opts]
   (let [{filename :filename} opts]
-    (println (sum (pairs (strings-to-ints (readall (str filename))))))))
+    (if (nil? filename)
+      (println ":filename not specified")
+      (println (sum (pairs (strings-to-ints (readall (str filename)))))))))

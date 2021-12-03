@@ -39,22 +39,16 @@ void print_bitsets(vector<bitset<BIT_LENGTH> > bitsets) {
 }
 
 vector<bitset<BIT_LENGTH> > oxygen_generator_rating(int column_number, vector<bitset<BIT_LENGTH> > bitsets) {
-  // cout << "There are " << bitsets.size() << " numbers left" << endl;
   vector<bitset<BIT_LENGTH> > on;
   vector<bitset<BIT_LENGTH> > off;
   for (int i = 0; i < bitsets.size(); i++) {
     string bitstring = bitsets[i].to_string();
     if (bitstring[column_number] == '1') {
-      // cout << "Pushing " << bitsets[i] << " to on" << endl;
       on.push_back(bitsets[i]);
     } else {
-      // cout << "Pushing " << bitsets[i] << " to off" << endl;
       off.push_back(bitsets[i]);
     }
   }
-  // cout << "On: " << on.size() << ", Off: " << off.size() << endl;
-  // cout << "On: "; print_bitsets(on);
-  // cout << "Off: "; print_bitsets(off);
 
   if (on.size() > off.size()) {
     return on; 
@@ -62,6 +56,27 @@ vector<bitset<BIT_LENGTH> > oxygen_generator_rating(int column_number, vector<bi
     return on;
   } else {
     return off;
+  }
+}
+
+vector<bitset<BIT_LENGTH> > co2_scrubber_rating(int column_number, vector<bitset<BIT_LENGTH> > bitsets) {
+  vector<bitset<BIT_LENGTH> > on;
+  vector<bitset<BIT_LENGTH> > off;
+  for (int i = 0; i < bitsets.size(); i++) {
+    string bitstring = bitsets[i].to_string();
+    if (bitstring[column_number] == '1') {
+      on.push_back(bitsets[i]);
+    } else {
+      off.push_back(bitsets[i]);
+    }
+  }
+
+  if (on.size() > off.size()) {
+    return off;
+  } else if (on.size() == off.size()) {
+    return off;
+  } else {
+    return on;
   }
 }
 
@@ -77,37 +92,9 @@ int calculate_oxygen_generator_rating(vector<string> data) {
 
   for (int h = 0; h < BIT_LENGTH; h++) {
     bitsets = oxygen_generator_rating(h, bitsets);
-    // print_bitsets(bitsets);
   }
 
   return bitsets[0].to_ulong();
-}
-
-vector<bitset<BIT_LENGTH> > co2_scrubber_rating(int column_number, vector<bitset<BIT_LENGTH> > bitsets) {
-  // cout << "There are " << bitsets.size() << " numbers left" << endl;
-  vector<bitset<BIT_LENGTH> > on;
-  vector<bitset<BIT_LENGTH> > off;
-  for (int i = 0; i < bitsets.size(); i++) {
-    string bitstring = bitsets[i].to_string();
-    if (bitstring[column_number] == '1') {
-      // cout << "Pushing " << bitsets[i] << " to on" << endl;
-      on.push_back(bitsets[i]);
-    } else {
-      // cout << "Pushing " << bitsets[i] << " to off" << endl;
-      off.push_back(bitsets[i]);
-    }
-  }
-  // cout << "On: " << on.size() << ", Off: " << off.size() << endl;
-  // cout << "On: "; print_bitsets(on);
-  // cout << "Off: "; print_bitsets(off);
-
-  if (on.size() > off.size()) {
-    return off;
-  } else if (on.size() == off.size()) {
-    return off;
-  } else {
-    return on;
-  }
 }
 
 int calculate_co2_scrubber_rating(vector<string> data) {
@@ -122,7 +109,6 @@ int calculate_co2_scrubber_rating(vector<string> data) {
 
   for (int h = 0; h < BIT_LENGTH; h++) {
     bitsets = co2_scrubber_rating(h, bitsets);
-    // print_bitsets(bitsets);
   }
 
   return bitsets[0].to_ulong();
@@ -137,13 +123,11 @@ int main (int argc, char** argv) {
     filename = argv[1];
   }
 
-
   vector<string> data = read_data(filename);
   cout << "Loaded " << data.size() << " data lines" << endl;
 
   int oxygen_generator_rating = calculate_oxygen_generator_rating(data);
   int co2_scrubber_rating = calculate_co2_scrubber_rating(data);
-  
 
   cout << "Oxygen generator rating: " << oxygen_generator_rating << endl;
   cout << "CO2 scrubber rating: " << co2_scrubber_rating << endl;

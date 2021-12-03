@@ -65,8 +65,6 @@ int main (int argc, char** argv) {
       }
     }
 
-    cout << "On: " << on << ", Off: " << off << endl;
-
     if (on > off) {
       gamma_bitset.set(h, true);
       epsilon_bitset.set(h, false);

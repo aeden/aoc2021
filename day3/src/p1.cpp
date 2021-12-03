@@ -28,6 +28,17 @@ vector<string> read_data(string filename) {
   }
 }
 
+vector<bitset<BIT_LENGTH> > strings_to_bitsets(vector<string> data) {
+  vector<bitset<BIT_LENGTH> > bitsets;
+
+  for (int i = 0; i < data.size(); i++) {
+    bitset<BIT_LENGTH> bits (data[i]);
+    bitsets.push_back(bits);
+  }
+
+  return bitsets;
+}
+
 int main (int argc, char** argv) {
   string filename;
   if (argc != 2) {
@@ -37,17 +48,10 @@ int main (int argc, char** argv) {
     filename = argv[1];
   }
 
-
   vector<string> data = read_data(filename);
   cout << "Loaded " << data.size() << " data lines" << endl;
 
-  vector<bitset<BIT_LENGTH> > bitsets;
-
-  for (int i = 0; i < data.size(); i++) {
-    bitset<BIT_LENGTH> bits (data[i]);
-    bitsets.push_back(bits);
-  }
-
+  vector<bitset<BIT_LENGTH> > bitsets = strings_to_bitsets(data);
   cout << "Processing " << bitsets.size() << " rows" << endl;
 
   bitset<BIT_LENGTH> gamma_bitset;

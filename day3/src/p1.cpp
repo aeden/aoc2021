@@ -9,6 +9,8 @@ using namespace std;
 const int SAMPLE_BITS= 5;
 const int DATA_BITS = 12;
 
+const int BIT_LENGTH = DATA_BITS;
+
 vector<string> read_data(string filename) {
   ifstream infile;
   infile.open(filename);
@@ -35,24 +37,23 @@ int main (int argc, char** argv) {
     filename = argv[1];
   }
 
-  const int bit_length = DATA_BITS;
 
   vector<string> data = read_data(filename);
   cout << "Loaded " << data.size() << " data lines" << endl;
 
-  vector<bitset<bit_length> > bitsets;
+  vector<bitset<BIT_LENGTH> > bitsets;
 
   for (int i = 0; i < data.size(); i++) {
-    bitset<bit_length> bits (data[i]);
+    bitset<BIT_LENGTH> bits (data[i]);
     bitsets.push_back(bits);
   }
 
   cout << "Processing " << bitsets.size() << " rows" << endl;
 
-  bitset<bit_length> gamma_bitset;
-  bitset<bit_length> epsilon_bitset;
+  bitset<BIT_LENGTH> gamma_bitset;
+  bitset<BIT_LENGTH> epsilon_bitset;
 
-  for (int h = 0; h < bit_length; h++) {
+  for (int h = 0; h < BIT_LENGTH; h++) {
     long on = 0;
     long off = 0;
     for (int i = 0; i < bitsets.size(); i++) {

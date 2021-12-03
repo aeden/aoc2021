@@ -57,7 +57,8 @@ int main (int argc, char** argv) {
     long on = 0;
     long off = 0;
     for (int i = 0; i < bitsets.size(); i++) {
-      if (bitsets[i].test(h)) {
+      string bitstring = bitsets[i].to_string();
+      if (bitstring[h] == '1') {
         on++;
       } else {
         off++;

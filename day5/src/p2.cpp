@@ -123,28 +123,24 @@ class Line {
             int y = start.y;
             for (int i = start.x; i < end.x + 1; i++) {
               Coordinates p = Coordinates(i, y + (i - start.x));
-              if ((p.x < 0 || p.y < 0) || (p.x > 999 || p.y > 999)) cout << to_string() << ":" << p.to_string() << endl;
               points.push_back(p);
             }
           } else if (start.x < end.x && start.y > end.y) {
             int y = start.y;
             for (int i = start.x; i < end.x + 1; i++) {
               Coordinates p = Coordinates(i, y - (i - start.x));
-              if (p.x < 0 || p.y < 0) cout << to_string() << ":" << p.to_string() << endl;
               points.push_back(p);
             }
           } else if (start.x > end.x && start.y < end.y) {
             int y = end.y;
             for (int i = end.x; i < start.x + 1; i++) {
               Coordinates p = Coordinates(i, y - (i - end.x));
-              if (p.x < 0 || p.y < 0) cout << to_string() << ":" << p.to_string() << endl;
               points.push_back(p);
             }
           } else if (start.x > end.x && start.y > end.y) {
             int y = end.y;
             for (int i = end.x; i < start.x + 1; i++) {
               Coordinates p = Coordinates(i, y + (i - end.x));
-              if (p.x < 0 || p.y < 0) cout << to_string() << ":" << p.to_string() << endl;
               points.push_back(p);
             }
           }
@@ -165,9 +161,6 @@ class Diagram {
     Coordinates bottom_right;
 
     Diagram(vector<string> data) {
-      top_left = Coordinates(0, 0);
-      bottom_right = Coordinates(0, 0);
-
       for (int i = 0; i < data.size(); i++) {
         Line line = Line(data[i]); 
         lines.push_back(line);

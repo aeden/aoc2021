@@ -95,7 +95,7 @@ class Line {
     // Returns all points covered by the line.
     vector<Coordinates> calculate_points() {
       vector <Coordinates> points;
-      if (is_horizontal()) { // horizontal line
+      if (is_horizontal()) { 
         int x = start.x;
         if (start.y > end.y) {
           for (int i = end.y; i < start.y + 1; i++) {
@@ -106,7 +106,7 @@ class Line {
             points.push_back(Coordinates(x, i));
           }
         }
-      } else if (is_vertical()) { // vertical line
+      } else if (is_vertical()) {
         int y = start.y;
         if (start.x > end.x) {
           for (int i = end.x; i < start.x + 1; i++) {
@@ -147,11 +147,7 @@ class Line {
               if (p.x < 0 || p.y < 0) cout << to_string() << ":" << p.to_string() << endl;
               points.push_back(p);
             }
-          } else {
-            cout << "unexpected case" << endl;
           }
-        } else {
-          // cout << to_string() << " is not a 45 deg diagonal" << endl;
         }
       }
       return points;
@@ -189,7 +185,6 @@ class Diagram {
     vector<Coordinates> covered_points() {
       vector<Coordinates> covered_points;
       for (int i = 0; i < lines.size(); i++) {
-        // if (lines[i].is_diagonal()) continue;
         vector<Coordinates> points = lines[i].points;
         for (int j = 0; j < points.size(); j++) {
           covered_points.push_back(points[j]);

@@ -97,52 +97,48 @@ class Line {
       vector <Coordinates> points;
       if (is_horizontal()) { 
         int x = start.x;
+        int a = start.y;
+        int b = end.y;
         if (start.y > end.y) {
-          for (int i = end.y; i < start.y + 1; i++) {
-            points.push_back(Coordinates(x, i));
-          }
-        } else {
-          for (int i = start.y; i < end.y + 1; i++) {
-            points.push_back(Coordinates(x, i));
-          }
+          a = end.y; b = start.y;
+        }
+        for (int i = a; i < b + 1; i++) {
+          points.push_back(Coordinates(x, i));
         }
       } else if (is_vertical()) {
         int y = start.y;
+        int a = start.x;
+        int b = end.x;
         if (start.x > end.x) {
-          for (int i = end.x; i < start.x + 1; i++) {
-            points.push_back(Coordinates(i, y));
-          } 
-        } else {
-          for (int i = start.x; i < end.x + 1; i++) {
-            points.push_back(Coordinates(i, y));
-          }
+          a = end.x; b = start.x;
         }
-      } else {
-        if (is_45_diagonal()) {
-          if (start.x < end.x && start.y < end.y) {
-            int y = start.y;
-            for (int i = start.x; i < end.x + 1; i++) {
-              Coordinates p = Coordinates(i, y + (i - start.x));
-              points.push_back(p);
-            }
-          } else if (start.x < end.x && start.y > end.y) {
-            int y = start.y;
-            for (int i = start.x; i < end.x + 1; i++) {
-              Coordinates p = Coordinates(i, y - (i - start.x));
-              points.push_back(p);
-            }
-          } else if (start.x > end.x && start.y < end.y) {
-            int y = end.y;
-            for (int i = end.x; i < start.x + 1; i++) {
-              Coordinates p = Coordinates(i, y - (i - end.x));
-              points.push_back(p);
-            }
-          } else if (start.x > end.x && start.y > end.y) {
-            int y = end.y;
-            for (int i = end.x; i < start.x + 1; i++) {
-              Coordinates p = Coordinates(i, y + (i - end.x));
-              points.push_back(p);
-            }
+        for (int i = a; i < b + 1; i++) {
+          points.push_back(Coordinates(i, y));
+        }
+      } else if (is_45_diagonal()) {
+        if (start.x < end.x && start.y < end.y) {
+          int y = start.y;
+          for (int i = start.x; i < end.x + 1; i++) {
+            Coordinates p = Coordinates(i, y + (i - start.x));
+            points.push_back(p);
+          }
+        } else if (start.x < end.x && start.y > end.y) {
+          int y = start.y;
+          for (int i = start.x; i < end.x + 1; i++) {
+            Coordinates p = Coordinates(i, y - (i - start.x));
+            points.push_back(p);
+          }
+        } else if (start.x > end.x && start.y < end.y) {
+          int y = end.y;
+          for (int i = end.x; i < start.x + 1; i++) {
+            Coordinates p = Coordinates(i, y - (i - end.x));
+            points.push_back(p);
+          }
+        } else if (start.x > end.x && start.y > end.y) {
+          int y = end.y;
+          for (int i = end.x; i < start.x + 1; i++) {
+            Coordinates p = Coordinates(i, y + (i - end.x));
+            points.push_back(p);
           }
         }
       }

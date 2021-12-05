@@ -8,7 +8,7 @@ I also chose to re-implement some solutions in Clojure as I want to brush up on 
 
 ## Compiling
 
-You can compile any C++ example by changing into the directory for the day and using `c++ -o bin/filename src/filename.cpp`.
+You can compile any C++ example by changing into the directory for the day and typing `make`.
 
 ## Running
 

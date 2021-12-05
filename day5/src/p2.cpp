@@ -119,10 +119,7 @@ class Line {
         }
       } else {
         if (is_45_diagonal()) {
-          // cout << to_string() << " is 45 deg diagonal" << endl;
-
           if (start.x < end.x && start.y < end.y) {
-            // cout << "start.x < end.x && start.y < end.y" << endl;
             int y = start.y;
             for (int i = start.x; i < end.x + 1; i++) {
               Coordinates p = Coordinates(i, y + (i - start.x));
@@ -130,7 +127,6 @@ class Line {
               points.push_back(p);
             }
           } else if (start.x < end.x && start.y > end.y) {
-            // cout << "start.x < end.x && start.y > end.y" << endl;
             int y = start.y;
             for (int i = start.x; i < end.x + 1; i++) {
               Coordinates p = Coordinates(i, y - (i - start.x));
@@ -138,7 +134,6 @@ class Line {
               points.push_back(p);
             }
           } else if (start.x > end.x && start.y < end.y) {
-            // cout << "start.x > end.x && start.y < end.y" << endl;
             int y = end.y;
             for (int i = end.x; i < start.x + 1; i++) {
               Coordinates p = Coordinates(i, y - (i - end.x));
@@ -146,7 +141,6 @@ class Line {
               points.push_back(p);
             }
           } else if (start.x > end.x && start.y > end.y) {
-            // cout << "start.x > end.x && start.y > end.y" << endl;
             int y = end.y;
             for (int i = end.x; i < start.x + 1; i++) {
               Coordinates p = Coordinates(i, y + (i - end.x));

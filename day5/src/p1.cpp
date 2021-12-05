@@ -226,26 +226,9 @@ int main (int argc, char** argv) {
   cout << "Loaded " << data.size() << " data lines" << endl;
 
   Diagram diagram = Diagram(data);
-  // cout << "Diagram data:" << endl;
-  // cout << diagram.to_data_string() << endl;
-
-  // cout << "Covered points:" << endl;
-  // print_coordinates(diagram.covered_points());
-  
-
-  /*cout << "0,0 == 0,0?";*/
-  /*bool v = diagram.top_left == Coordinates(0, 0);*/
-  /*cout << v << endl;*/
-
-  /*cout << "0,0 == 1,1?";*/
-  /*v = diagram.top_left == Coordinates(1, 1);*/
-  /*cout << v << endl;*/
   
   cout << "Top left: " << diagram.top_left.to_string() << endl;
   cout << "Bottom right: " << diagram.bottom_right.to_string() << endl;
-
-  // cout << "Diagram:" << endl;
-  // cout << diagram.to_string() << endl;
 
   cout << "Number of overlapping points: " << diagram.overlapping_points().size() << endl;
 

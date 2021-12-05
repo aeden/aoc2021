@@ -4,28 +4,12 @@
 #include <sstream>
 #include <vector>
 #include <map>
+#include "lib/io.h"
 
 using namespace std;
 
 const string SEGMENT_DELIMITER = " -> ";
 const string COORDINATE_DELIMITER = ",";
-
-vector<string> read_data(string filename) {
-  ifstream infile;
-  infile.open(filename);
-  vector<string> data;
-
-  if (infile.is_open()) {
-    string line;
-    while(getline(infile, line)) {
-      data.push_back(line);
-    }
-    return data;
-  } else {
-    cout << "Failed to read data" << endl;
-    return data;
-  }
-}
 
 class Coordinates {
   public:

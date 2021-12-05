@@ -299,8 +299,8 @@ int main (int argc, char** argv) {
   cout << "Loaded " << data.size() << " data lines" << endl;
 
   Diagram diagram = Diagram(data);
-  cout << "Diagram data:" << endl;
-  cout << diagram.to_data_string() << endl;
+  //cout << "Diagram data:" << endl;
+  //cout << diagram.to_data_string() << endl;
 
   // cout << "Covered points:" << endl;
   // print_coordinates(diagram.covered_points());

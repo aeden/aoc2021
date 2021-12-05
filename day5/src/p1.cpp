@@ -173,6 +173,7 @@ class Diagram {
       map<Coordinates,int> overlap;
       vector<Coordinates> overlapping;
       vector<Coordinates> points = covered_points();
+      // cout << "Covered points size: " << points.size() << endl;
       for (vector<Coordinates>::iterator it = points.begin(); it != points.end(); it++) {
         Coordinates p = *it;
         if (overlap.find(p) == overlap.end()) {
@@ -182,9 +183,13 @@ class Diagram {
         }
       }
 
+      // cout << "Overlap key count: " << overlap.size() << endl;
+
       for (map<Coordinates,int>::iterator iter = overlap.begin(); iter != overlap.end(); iter++) {
         Coordinates p = iter->first;
         int count = iter->second;
+        // cout << "[" << p.to_string() << "]" << " => " << count << endl;
+
         if (count >= 2) {
           overlapping.push_back(p);
         }

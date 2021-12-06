@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 #include <vector>
 
 using namespace std;
@@ -20,4 +21,20 @@ vector<string> read_data(string filename) {
     cout << "Failed to read data" << endl;
     return data;
   }
+}
+
+void parse_ints(string row, vector<int> *numbers, char separator) {
+    stringstream tokenizer(row);
+    string token;
+    while (getline(tokenizer, token, separator)) {
+      numbers->push_back(stoi(token));
+    }
+}
+
+void print_ints(vector<int> *numbers, char separator) {
+  for (vector<int>::iterator iter = numbers->begin(); iter != numbers->end(); iter++) {
+    cout << *iter;
+    if (next(iter) != numbers->end()) cout << separator;
+  }
+  cout << endl;
 }

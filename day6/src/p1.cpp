@@ -4,11 +4,7 @@
 #include <vector>
 #include "lib/io.h"
 
-#include <cmath>
-
 using namespace std;
-
-const double e = std::exp(1.0);
 
 class Fish {
   public:
@@ -66,20 +62,13 @@ int main (int argc, char** argv) {
 
   vector<int> numbers;
   parse_ints(data[0], &numbers, ',');
-  // print_ints(&numbers, ','); 
 
   vector<Fish> fish;
   for (vector<int>::iterator iter = numbers.begin(); iter != numbers.end(); iter++) {
     fish.push_back(Fish(*iter));
   }
 
-  long ages = sum_fish_ages(&fish);
-  double v = (e * ages) / fish.size();
-  cout << v << endl;
-
   for (int i = 0; i < days; i++) {
-    double start_size = fish.size();
-    cout << "day " << i << ":";
     vector<Fish> new_fish = vector<Fish>();
     for (vector<Fish>::iterator iter = fish.begin(); iter != fish.end(); iter++) {
       if (iter->age()) {
@@ -89,9 +78,6 @@ int main (int argc, char** argv) {
     for (int j = 0; j < new_fish.size(); j++) {
       fish.push_back(new_fish[j]);
     }
-    double end_size = fish.size();
-    long ages = sum_fish_ages(&fish);
-    cout << fish.size() << "," << ages << "," << (end_size / start_size) <<  endl;
   }
 
   // print_fish(&fish); 

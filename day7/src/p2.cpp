@@ -62,9 +62,6 @@ int main (int argc, char** argv) {
   map<int,int> cost_map;
   for (set<int>::iterator iter = positions.begin(); iter != positions.end(); iter++) {
     int p = *iter;
-    // cout << p;
-    // if (next(iter) != positions.end()) cout << ",";
-
     for (vector<Crab>::iterator crab_iter = crabs.begin(); crab_iter != crabs.end(); crab_iter++) {
       int cost = crab_iter -> cost(p);
       if (cost_map.find(p) == cost_map.end()) {
@@ -74,11 +71,9 @@ int main (int argc, char** argv) {
       }
     }
   }
-  // cout << endl;
 
   int lowest_cost = 0;
   int lowest_cost_position = 0;
-  // cout << "Costs:" << endl;
   for (map<int,int>::iterator iter = cost_map.begin(); iter != cost_map.end(); iter++) {
     int p = iter->first;
     int cost = iter->second;
@@ -86,7 +81,6 @@ int main (int argc, char** argv) {
       lowest_cost = cost;
       lowest_cost_position = p;
     }
-    // cout << p << "=" << cost << endl;
   }
 
   cout << "Lowest cost " << lowest_cost << " is at position " << lowest_cost_position << endl;

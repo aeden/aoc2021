@@ -18,7 +18,7 @@
 (defn sum-of-crab-travel [loc fmap]
   (reduce + (map (fn [[start-pos crab-count]] (* (Math/abs (- start-pos loc)) crab-count) ) fmap)))
 
-(defn calc [locations fmap]
+(defn least-fuel-spent [locations fmap]
   (apply min (map (fn [loc] (sum-of-crab-travel loc fmap)) locations)))
 
 (defn run [opts]
@@ -29,5 +29,5 @@
         ; (println "Starting positions:" start)
         ; (println "Frequencies:" (freq-map start))
         ; (println "Locations:" (locations start))
-        (println "Least fuel spent:" (calc (locations start) (freq-map start)))
+        (println "Least fuel spent:" (least-fuel-spent (locations start) (freq-map start)))
         ))))

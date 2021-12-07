@@ -15,8 +15,11 @@
 (defn locations [positions]
   (range (apply min positions) (inc (apply max positions))))
 
+(defn dist [start dest]
+  (Math/abs (- start dest)))
+
 (defn sum-of-crab-travel [loc fmap]
-  (reduce + (map (fn [[start-pos crab-count]] (* (Math/abs (- start-pos loc)) crab-count) ) fmap)))
+  (reduce + (map (fn [[start-pos crab-count]] (* (dist start-pos loc) crab-count) ) fmap)))
 
 (defn least-fuel-spent [locations fmap]
   (apply min (map (fn [loc] (sum-of-crab-travel loc fmap)) locations)))

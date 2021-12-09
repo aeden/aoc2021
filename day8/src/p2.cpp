@@ -50,8 +50,6 @@ class Entry {
     }
 
     void build_maps() {
-      // calculate based on the number of times each letter appears
-      //
       // 0 = 0 1 2   4 5 6     6
       // 1 =     2     5       2 *
       // 2 = 0   2 3 4   6     5
@@ -63,8 +61,7 @@ class Entry {
       // 8 = 0 1 2 3 4 5 6     7 *
       // 9 = 0 1 2 3   5 6     6
 
-      char wire_map[7];
-      print_strings(&signal_pattern, " ");
+      // print_strings(&signal_pattern, " ");
       vector<string> zero_six_or_nine;
       vector<string> two_three_or_five;
       for (vector<string>::iterator iter = signal_pattern.begin(); iter != signal_pattern.end(); iter++) {
@@ -89,27 +86,20 @@ class Entry {
       vector<char> d47 = diff_string(number_to_pattern_map[4], number_to_pattern_map[7]);
       vector<char> d84 = diff_string(number_to_pattern_map[8], number_to_pattern_map[4]);
 
-      wire_map[0] = d71[0];
-
       for (int i = 0; i < 3; i++) {
         string p = zero_six_or_nine[i];
         string s = vec_to_string(diff_string(number_to_pattern_map[8], p));
-        cout << "diff 8 and " << p << ": " << s << endl;
+        //cout << "diff 8 and " << p << ": " << s << endl;
 
         string s1 = vec_to_string(diff_string(s, number_to_pattern_map[1]));
-        cout << "diff " << s << " and 1: " << s1 << endl;
+        //cout << "diff " << s << " and 1: " << s1 << endl;
 
         if (s1.length() == 0) {
           number_to_pattern_map[6] = p;
-          wire_map[5] = number_to_pattern_map[1][number_to_pattern_map[1].find_first_not_of(s)];
-          wire_map[2] = number_to_pattern_map[1][number_to_pattern_map[1].find_first_not_of(s1)];
         } else { 
           string s2 = vec_to_string(diff_string(vec_to_string(d84), p));
-          // cout << "diff 8+4 and " << p << ": " << s2 << endl;
           if (s2.length() == 1) {
             number_to_pattern_map[9] = p;
-            // cout << "set pos 4 to " << s2[0] << endl;
-            wire_map[4] = s2[0];
           } else {
             number_to_pattern_map[0] = p;
           }
@@ -119,21 +109,17 @@ class Entry {
       for (int i = 0; i < 3; i++) {
         string p = two_three_or_five[i];
         string s = vec_to_string(diff_string(number_to_pattern_map[8], p));
-        cout << "diff 8 and " << p << ": " << s << endl;
+        //cout << "diff 8 and " << p << ": " << s << endl;
 
         string s1 = vec_to_string(diff_string(s, number_to_pattern_map[1]));
-        cout << "diff " << s << " and 1: " << s1 << endl;
+        //cout << "diff " << s << " and 1: " << s1 << endl;
 
         if (s1.length() == 2) {
            number_to_pattern_map[3] = p;
 
-           string s2 = string(1, wire_map[5]);
-           int pos = s.find_first_not_of(s2);
-           //cout << "char: " << s[pos] << endl;
-           wire_map[1] = s[pos];
         } else {
           string s2 = vec_to_string(diff_string(vec_to_string(d84), p));
-          cout << "diff 8+4 and " << p << ": " << s2 << endl;
+          //cout << "diff 8+4 and " << p << ": " << s2 << endl;
 
           if (s2.length() == 1) {
             number_to_pattern_map[5] = p;
@@ -144,7 +130,7 @@ class Entry {
       }
 
       for (int i = 0; i <= 9; i++) {
-        cout << i << ":" << number_to_pattern_map[i] << endl;
+        // cout << i << ":" << number_to_pattern_map[i] << endl;
         sort(number_to_pattern_map[i].begin(), number_to_pattern_map[i].end());
         signal_pattern_map[number_to_pattern_map[i]] = i;
       }
@@ -156,10 +142,8 @@ class Entry {
         string k = *iter;
         sort(k.begin(), k.end());
         int v = signal_pattern_map[k];
-        //cout << "KV: " << k << "," << v << endl;
         output_string += std::to_string(v);
       }
-      //cout << "Output string: " << output_string << endl;
       return stoi(output_string);
     }
 
@@ -213,7 +197,6 @@ vector<Entry> parse_data(vector<string> lines) {
   string delimiter = " | ";
   for (vector<string>::iterator iter = lines.begin(); iter != lines.end(); iter++) {
     string s = *iter;
-    cout << "parsing: " << s << endl;
     int pos = s.find(delimiter);
     Entry entry (iter->substr(0, pos), iter->substr(pos + 3));
     entry.build_maps();
@@ -240,7 +223,7 @@ int main (int argc, char** argv) {
   int count = 0;
   for (vector<Entry>::iterator iter = entries.begin(); iter != entries.end(); iter++) {
     int v = iter->get_output_value();
-    cout << "Output value: " << v << endl;
+    // cout << iter->to_string() << ": " << v << endl;
     count += v;
   }
 

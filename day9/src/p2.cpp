@@ -10,6 +10,8 @@
 
 using namespace std;
 
+
+// Represents a point on the heightmap
 class Point {
   public:
     int x;
@@ -31,6 +33,7 @@ class Point {
     }
 };
 
+// Represents a single risk value at a point on the heightmap
 class RiskValue {
   public:
     int value;
@@ -52,6 +55,8 @@ class RiskValue {
     }
 };
 
+// A predicate used to test of the risk value should be removed from a collection because it
+// is either already processed or is a value that should not be processed (i.e. a 9)
 class ShouldRemove {
   public:
     vector<RiskValue> feeders;
@@ -86,6 +91,7 @@ class Heightmap {
       }
     }
 
+    // Find all valid neighbors for a given RiskValue
     vector<RiskValue> find_neighbors(RiskValue risk_value) {
       vector<RiskValue> neighbors;
       Point l = risk_value.location;
@@ -104,6 +110,7 @@ class Heightmap {
       return neighbors;
     }
 
+    // Find all low points on the heightmap.
     vector<RiskValue> find_low_points() {
       vector<RiskValue> low_points;
       for (int i = 0; i < risk_values.size(); i++) {
@@ -126,6 +133,9 @@ class Heightmap {
       return low_points;
     }
 
+    // Given a RiskValue, find all of the feeders to that RiskValue. Note that 
+    // the first value in the feeders collection will always be the RiskValue 
+    // itself if allowed.
     void find_feeders(RiskValue risk_value, vector<RiskValue> *feeders) {
       vector<RiskValue> neighbors = find_neighbors(risk_value);
 

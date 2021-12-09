@@ -38,6 +38,17 @@ class Entry {
       }
     }
 
+    int count_unique_number_segment_output_values() {
+      int count = 0;
+      for (vector<string>::iterator iter = output_value.begin(); iter != output_value.end(); iter++) {
+        int str_len = iter->length();
+        if (str_len == 2 || str_len == 3 || str_len == 4 || str_len == 7) {
+          count++;
+        }
+      }
+      return count;
+    }
+
     string to_string() {
       stringbuf buffer;
       ostream os (&buffer);
@@ -80,9 +91,13 @@ int main (int argc, char** argv) {
 
   vector<Entry> entries = parse_data(data);
 
+  int count = 0;
   for (vector<Entry>::iterator iter = entries.begin(); iter != entries.end(); iter++) {
-    cout << iter->to_string()<< endl;
+    count += iter->count_unique_number_segment_output_values();
+    // cout << iter->to_string()<< endl;
   }
+
+  cout << "Count: " << count << endl;
 
   cout << "Done" << endl;
 }

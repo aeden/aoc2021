@@ -38,3 +38,11 @@ void print_ints(vector<int> *numbers, char separator) {
   }
   cout << endl;
 }
+
+void print_strings(vector<string> *strings, string separator) {
+  for (vector<string>::iterator iter = strings->begin(); iter != strings->end(); iter++) {
+    cout << *iter;
+    if (next(iter) != strings->end()) cout << separator;
+  }
+  cout << endl;
+}

@@ -66,13 +66,6 @@ class ShouldRemove {
     }
 };
 
-class BasinSorter {
-  public:
-    bool operator() (RiskValue lhs, RiskValue rhs) {
-      return lhs.value < rhs.value;
-    }
-};
-
 class Heightmap {
   public:
     vector<vector<RiskValue> > risk_values;
@@ -85,9 +78,7 @@ class Heightmap {
         for (int x = 0; x < data[y].size(); x++) {
           char c = data[y][x];
           int v = c - '0';
-          // cout << "Risk value: " << v;
           Point p = Point(x, y);
-          // cout << " at " << p.to_string() << endl;
           RiskValue rv (v, p);
           line_risk_values.push_back(rv);
         }
@@ -98,41 +89,17 @@ class Heightmap {
     vector<RiskValue> find_neighbors(RiskValue risk_value) {
       vector<RiskValue> neighbors;
       Point l = risk_value.location;
-      //cout << "Find neighbors for " << risk_value.to_string() << endl;
       if (l.x - 1 >= 0) {
-        //cout << "left: ";
-        RiskValue v = risk_values[l.y][l.x - 1];
-        //cout << v.to_string() << endl;
-        neighbors.push_back(v);
-      } else {
-        //cout << "no left" << endl;
+        neighbors.push_back(risk_values[l.y][l.x - 1]);
       }
-
-      //cout << "checking right of " << l.x << endl;
       if (l.x + 1 < risk_values[l.y].size()) {
-        //cout << "right: ";
-        RiskValue v = risk_values[l.y][l.x + 1];
-        //cout << v.to_string() << endl;
-        neighbors.push_back(v);
-      } else {
-        //cout << "no right" << endl;
+        neighbors.push_back(risk_values[l.y][l.x + 1]);
       }
       if (l.y - 1 >= 0) {
-        //cout << "up: ";
-        RiskValue v = risk_values[l.y - 1][l.x];
-        //cout << v.to_string() << endl;
-        neighbors.push_back(v);
-      } else {
-        //cout << "no up" << endl;
+        neighbors.push_back(risk_values[l.y - 1][l.x]);
       }
-
       if (l.y + 1 < risk_values.size()) {
-        // cout << "down: ";
-        RiskValue v = risk_values[l.y + 1][l.x];
-        // cout << v.to_string() << endl;
-        neighbors.push_back(v);
-      } else {
-        // cout << "no down" << endl;
+        neighbors.push_back(risk_values[l.y + 1][l.x]);
       }
       return neighbors;
     }
@@ -160,10 +127,7 @@ class Heightmap {
     }
 
     void find_feeders(RiskValue risk_value, vector<RiskValue> *feeders) {
-      //cout << "Find feeders for " << risk_value.value << endl;
       vector<RiskValue> neighbors = find_neighbors(risk_value);
-      //cout << "Neighbors (count: " << neighbors.size() << ")" << endl;
-      //print_risk_values(&neighbors); 
 
       if (!ShouldRemove(feeders)(risk_value)) {
         feeders->push_back(risk_value);
@@ -171,9 +135,6 @@ class Heightmap {
 
       vector<RiskValue>::iterator pend = remove_if(neighbors.begin(), neighbors.end(), ShouldRemove(feeders));
       vector<RiskValue> n2 (neighbors.begin(), pend);
-
-      //cout << "After removal of 9s and already checked" << endl;
-      //print_risk_values(&n2);
 
       for (int i = 0; i < n2.size(); i++) {
         find_feeders(n2[i], feeders);

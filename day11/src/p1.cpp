@@ -9,6 +9,8 @@
 
 using namespace std;
 
+const int FLASH_TRIGGER = 9;
+
 class Point {
   public:
     int x;
@@ -80,7 +82,7 @@ class Cave {
       for (vector<Octopus*>::iterator iter = neighbors->begin(); iter != neighbors->end(); iter++) {
         Octopus *n = *iter;
         n->energy += 1;
-        if (n->energy > 9 && !Flashed(flashed)(n)) {
+        if (n->energy > FLASH_TRIGGER && !Flashed(flashed)(n)) {
           //cout << "flash needed for " << n->to_string() << endl;
           vector<Octopus*> next_neighbors = find_neighbors(n, flashed);          
           flash(n, &next_neighbors, flashed);
@@ -90,7 +92,6 @@ class Cave {
 
     int step(int n) {
       cout << "Step " << n << endl;
-      int flashes = 0;
       for (int i = 0; i < octopuses.size(); i++) {
         for (int j = 0; j < octopuses[i].size(); j++) {
           octopuses[i][j].energy += 1;
@@ -101,7 +102,7 @@ class Cave {
       vector<Octopus*> flashed;
       for (int i = 0; i < octopuses.size(); i++) {
         for (int j = 0; j < octopuses[i].size(); j++) {
-          if (octopuses[i][j].energy > 9 && !Flashed(&flashed)(&octopuses[i][j])) {
+          if (octopuses[i][j].energy > FLASH_TRIGGER && !Flashed(&flashed)(&octopuses[i][j])) {
             vector<Octopus*> neighbors = find_neighbors(&octopuses[i][j], &flashed);
             flash(&octopuses[i][j], &neighbors, &flashed); 
           }

@@ -30,7 +30,6 @@ class Crab {
 
 int main (int argc, char** argv) {
   string filename;
-  int days;
   if (argc != 2) {
     cout << "Usage: " << argv[0] << " datafile" << endl;
     return 1;

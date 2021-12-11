@@ -67,7 +67,6 @@ parse_result parse_line(string line) {
 
 int main (int argc, char** argv) {
   string filename;
-  int days;
   if (argc != 2) {
     cout << "Usage: " << argv[0] << " datafile" << endl;
     return 1;

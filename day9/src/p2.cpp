@@ -200,7 +200,6 @@ void print_basins(vector<vector<RiskValue> > *basins) {
 
 int main (int argc, char** argv) {
   string filename;
-  int days;
   if (argc != 2) {
     cout << "Usage: " << argv[0] << " datafile" << endl;
     return 1;

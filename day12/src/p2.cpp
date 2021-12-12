@@ -193,7 +193,6 @@ class Graph {
     }
 
     void traverse(Node node, vector<Path> *paths) {
-      // for each start edge, visit its destination
       for (vector<Edge>::iterator iter = edges.begin(); iter != edges.end(); iter++) {
         if (iter->start == node) {
           vector<Node> visited;
@@ -210,42 +209,28 @@ class Graph {
     }
     
     void visit(Node node, vector<Path> *paths, vector<Node> *visited) {
-      // cout << "visiting node " << node.to_string() << endl;
       visited->push_back(node);
-      // find connected edges
       for (vector<Edge>::iterator iter = edges.begin(); iter != edges.end(); iter++) {
         if (iter->start == node) {
-          // cout << "found edge with start node: " << iter->to_string() << endl;
           Node next = iter->end;
-          // cout << "check node: " << next.to_string() << endl;
           if (next.is_end()) {
             visited->push_back(next);
-            // cout << "found end, build path from visited" << endl;
             build_path(paths, visited);
             visited->pop_back();
           } else if (find_if(visited->begin(), visited->end(), Visited(next, visited)) == visited->end()) {
-            // cout << "moving to next node " << next.to_string() << endl;
             visit(next, paths, visited);
             visited->pop_back();
-          } else {
-            // cout << "already visited " << next.to_string() << endl;
-          }
-        } else if (iter->end == node) {
-          //cout << "found edge withend node: " << iter->to_string() << endl;
-          Node next = iter->start;
-          //cout << "check node: " << next.to_string() << endl;
-          if (next.is_end()) {
-            visited->push_back(next);
-            //cout << "found end, build path from visited" << endl;
-            build_path(paths, visited);
-            visited->pop_back();
-          } else if (find_if(visited->begin(), visited->end(), Visited(next, visited)) == visited->end()) {
-            //cout << "moving to next node " << next.to_string() << endl;
-            visit(next, paths, visited);
-            visited->pop_back();
-          } else {
-            //cout << "already visited " << next.to_string() << endl;
           } 
+        } else if (iter->end == node) {
+          Node next = iter->start;
+          if (next.is_end()) {
+            visited->push_back(next);
+            build_path(paths, visited);
+            visited->pop_back();
+          } else if (find_if(visited->begin(), visited->end(), Visited(next, visited)) == visited->end()) {
+            visit(next, paths, visited);
+            visited->pop_back();
+          }  
         }
       }
     }
@@ -285,11 +270,6 @@ int main (int argc, char** argv) {
 
   vector<Path> paths;
   graph.traverse(graph.start_node, &paths);
-
-  /*cout << "Paths:" << endl;*/
-  /*for (vector<Path>::iterator iter = paths.begin(); iter != paths.end(); iter++) {*/
-    /*cout << iter->to_string() << endl;*/
-  /*}*/
 
   cout << "Total number of paths: " << paths.size() << endl;
 

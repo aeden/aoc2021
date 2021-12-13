@@ -199,6 +199,7 @@ class Paper {
 int main (int argc, char** argv) {
   string filename;
   int max_folds = -1;
+  cout << "argc: " << argc << endl;
   if (argc != 2 && argc != 3) {
     cout << "Usage: " << argv[0] << " datafile [max_folds]" << endl;
     return 1;

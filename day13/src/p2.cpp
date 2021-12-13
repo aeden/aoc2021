@@ -49,7 +49,6 @@ class PointSorter {
 class ArePointsEqual {
   public:
     bool operator()(Point lhs, Point rhs) {
-      //cout << lhs.to_string() << " == " << rhs.to_string() << " ? " << (lhs == rhs) << endl;
       return lhs == rhs;
     }
 };
@@ -81,8 +80,10 @@ class Paper {
       Fold f = folds[i];
       if (f.direction == UP) {
         fold_up(f.line_number);
+        height = f.line_number;
       } else {
         fold_left(f.line_number);
+        width = f.line_number;
       }
       merge_overlapping();
     }
@@ -199,7 +200,6 @@ class Paper {
 int main (int argc, char** argv) {
   string filename;
   int max_folds = -1;
-  cout << "argc: " << argc << endl;
   if (argc != 2 && argc != 3) {
     cout << "Usage: " << argv[0] << " datafile [max_folds]" << endl;
     return 1;
@@ -222,10 +222,10 @@ int main (int argc, char** argv) {
 
   for (int i = 0; i < max_folds; i++) {
     paper.fold_once(i);
-
-    //cout << "After fold " << i + 1 << endl;
-    //cout << paper.draw() << endl;
   }
+
+  cout << "After fold " << max_folds << endl;
+  cout << paper.draw() << endl;
 
   cout << "Visible: " << paper.dots.size() << endl;
 

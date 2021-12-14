@@ -188,7 +188,6 @@ int main (int argc, char** argv) {
       occurrences[pair[0]] += pair_count;
     }
   }
-  
   occurrences[pt.last_char] += 1;
 
   long min = 0;

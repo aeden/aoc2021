@@ -5,6 +5,7 @@
 #include "lib/io.h"
 
 #include <sstream>
+#include <cassert>
 
 using namespace std;
 

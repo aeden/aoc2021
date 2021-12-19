@@ -5,6 +5,7 @@
 #include "lib/io.h"
 
 #include <map>
+#include <deque>
 
 using namespace std;
 

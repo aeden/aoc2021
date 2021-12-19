@@ -224,7 +224,7 @@ class Cave {
 int main (int argc, char** argv) {
   string filename;
   if (argc != 2) {
-    cout << "Usage: " << argv[0] << " datafile steps" << endl;
+    cout << "Usage: " << argv[0] << " datafile" << endl;
     return 1;
   } else {
     filename = argv[1];

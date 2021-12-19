@@ -7,6 +7,7 @@
 #include <sstream>
 #include <map>
 #include <algorithm>
+#include <cassert>
 
 using namespace std;
 

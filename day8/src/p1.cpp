@@ -5,6 +5,7 @@
 #include "lib/io.h"
 
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 

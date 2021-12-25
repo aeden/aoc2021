@@ -1,0 +1,8 @@
+inp x
+add x 10
+mul x 10
+div x 10
+mod x 10
+inp y
+add x y
+add y x
